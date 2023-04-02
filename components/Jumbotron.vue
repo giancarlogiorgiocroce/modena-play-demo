@@ -9,6 +9,7 @@
 <style scoped>
 .ct {
   height: 100vh;
+  margin-top: 70px;
   background-image: url("../assets/play-monster.jpg");
   background-repeat: no-repeat;
   background-size: cover;
