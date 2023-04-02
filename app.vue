@@ -10,13 +10,19 @@
 * {
   box-sizing: border-box;
   text-decoration: none;
-  color: black;
   font-family: sans-serif;
-  font-size: 1rem;
+}
+
+p {
+  margin: 0;
 }
 
 .center {
   width: 80%;
   margin: 0 auto;
+}
+
+.bg-red {
+  background-color: #b0082b;
 }
 </style>
