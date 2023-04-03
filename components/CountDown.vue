@@ -3,32 +3,39 @@
     <h1>mancano</h1>
     <div class="counter-ct">
       <div class="clock flex-c">
-        <div class="num">{{ clocks.displayDays }}</div>
+        <div class="num">{{ displayDays }}</div>
         <div class="time">giorni</div>
       </div>
       <div class="clock flex-c">
-        <div class="num">{{ clocks.displayHours }}</div>
+        <div class="num">{{ displayHours }}</div>
         <div class="time">ore</div>
       </div>
       <div class="clock flex-c">
-        <div class="num">{{ clocks.displayMinutes }}</div>
+        <div class="num">{{ displayMinutes }}</div>
         <div class="time">minuti</div>
       </div>
       <div class="clock flex-c">
-        <div class="num">{{ clocks.displaySeconds }}</div>
+        <div class="num">{{ displaySeconds }}</div>
         <div class="time">secondi</div>
+        <div class="bar">
+          <div class="progress" :style="{ width: progressPercentage }"></div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-let clocks = {
-  displayDays: ref(),
-  displayHours: ref(),
-  displayMinutes: ref(),
-  displaySeconds: ref(),
-}
+let displayDays= ref();
+let displayHours= ref();
+let displayMinutes= ref();
+let displaySeconds= ref();
+
+const progressPercentage = computed(() => {
+  const percentage = (displaySeconds.value * 100) / 60;
+
+  return `${percentage}%`;
+});
 
 const _seconds = computed(() => 1000);
 const _minutes = computed(() => _seconds.value * 60);
@@ -36,7 +43,8 @@ const _hours = computed(() => _minutes.value * 60);
 const _days = computed(() => _hours.value * 24);
 
 const formatNum = (num:number) => {
-  return num < 10 ? '0' + num : num;
+  // return num < 10 ? '0' + num : num;
+  return num; 
 }
 const time = () => {  
   const timer = setInterval(() => {
@@ -54,10 +62,10 @@ const time = () => {
     const minutes = Math.floor((distance % _hours.value) / _minutes.value);
     const seconds = Math.floor((distance % _minutes.value) / _seconds.value);
 
-    clocks.displayDays.value = formatNum(days);
-    clocks.displayHours.value = formatNum(hours);
-    clocks.displayMinutes.value = formatNum(minutes);
-    clocks.displaySeconds.value = formatNum(seconds);
+    displayDays.value = formatNum(days);
+    displayHours.value = formatNum(hours);
+    displayMinutes.value = formatNum(minutes);
+    displaySeconds.value = formatNum(seconds);
 
   }, 1000)
 }
@@ -102,5 +110,15 @@ h1 {
 .time {
   font-size: 20px;
   text-transform: uppercase;
+}
+
+.bar {
+  min-width: 200px;
+  background: #b0082b;
+}
+
+.progress {
+  min-height: 10px;
+  background: rgba(240, 240, 240);
 }
 </style>
