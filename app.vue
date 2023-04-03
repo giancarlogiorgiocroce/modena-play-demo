@@ -2,6 +2,7 @@
   <div class="app">
     <Header />
     <Jumbotron />
+    <CountDown />
     <Footer />
   </div>
 </template>
@@ -24,5 +25,12 @@ p {
 
 .bg-red {
   background-color: #b0082b;
+}
+
+.flex-c{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>

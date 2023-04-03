@@ -23,7 +23,6 @@
 
         <div class="hamburger" @click="toggleSideMenu()">
           <span>MENU</span>
-          <!-- <Icon class="icon" name="heroicons:bars-3-solid" @click="toggleSideMenu()"/> -->
           <div class="lines-ct" :class="{'opened': isSideMenuVisible}">
             <div class="line"></div>
             <div class="line"></div>
