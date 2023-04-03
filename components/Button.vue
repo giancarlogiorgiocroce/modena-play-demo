@@ -1,6 +1,6 @@
 <template>
-  <div class="btn" :class="{'bg-red': !invertedColorscheme}">
-    <div class="icon" v-if="name"> <font-awesome-icon icon="fa-solid fa-user" /> </div>
+  <div class="btn" :class="{'inverted-color-scheme': invertedColorscheme}">
+    <Icon v-if="name" class="icon" :name="name"/>
     <p>{{ value }}</p>
   </div>
 </template>
@@ -20,18 +20,36 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <style scoped>
+@media only screen and (min-width: 1280px) {
+  .btn {
+    font-size: 1.3rem;
+  }
+}
 .btn {
   color: white;
+  background-color: #b0082b;
+
   height: fit-content;
   width: fit-content;
   padding: 10px 20px;
   border-radius: 20px;
-}
-.icon {
-  height: 20px;
-  width: 20px;
-  fill: white;
+  border: 4px solid#b0082b;
 
+  transition: all 0.3s ease-out;
+}
+
+.btn.inverted-color-scheme, .btn:hover {
+  color: #b0082b;
+  background-color: #fff;
+
+  border: 4px solid#b0082b;
+
+  cursor: pointer;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
 }
 p {
   font-weight: bold;

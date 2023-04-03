@@ -19,13 +19,11 @@
       </div>
       <div class="btns">
         <Button class="btn" value="BIGLIETTI"/>
-        <Button class="btn" name="user"/>
+        <Button class="btn" name="material-symbols:person"/>
 
         <div class="hamburger">
           <span>MENU</span>
-          <span>
-            <font-awesome-icon :icon="['fas', 'bars']" />
-          </span>
+          <Icon class="icon" name="heroicons:bars-3-solid" />
         </div>
       </div>
     </div>
@@ -39,12 +37,14 @@ const links:any = {
   three: {text:"informazioni", href:"https://www.play-modena.it/informazioni/" },
   four: {text:"press", href:"https://www.play-modena.it/press/" },
 }
-const getLog = (el:any) => {
-  console.log(el);
-}
 </script>
 
 <style scoped>
+@media only screen and (min-width: 1280px) {
+  .link {
+    font-size: 1.3rem;
+  }
+}
 .ct {
   position: fixed;
   top: 0;
@@ -78,6 +78,7 @@ const getLog = (el:any) => {
   color: #b0082b;
   margin: auto 0;
   font-weight: bold;
+  transition: all 0.3s ease-out;
 }
 
 .btns {
@@ -98,7 +99,20 @@ const getLog = (el:any) => {
     display: none;
   }
   .hamburger {
-    display: block;
+    display: flex;
+    gap: 0.5rem;
+    color: #b0082b;
+    font-weight: bold;
+  }
+
+  .hamburger span {
+    display: flex;
+    align-items: center;
+  }
+
+  .icon {
+    width: 50px;
+    height: 40px;
   }
 }
 </style>
