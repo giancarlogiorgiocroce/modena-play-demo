@@ -127,7 +127,7 @@ h1 {
 
 .bar {
   margin: 1rem 0.5rem;
-  min-width: 15vw;
+  min-width: 200px;
   background: #b0082b;
   transform: rotate(180deg);
   border: 2px dashed white;

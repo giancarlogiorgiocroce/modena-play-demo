@@ -47,6 +47,15 @@ const props = withDefaults(defineProps<Props>(), {
   cursor: pointer;
 }
 
+.btn.inverted-color-scheme:hover {
+  color: #fff;
+  background-color: #b0082b;
+
+  border: 4px solid#b0082b;
+
+  cursor: pointer;
+}
+
 .icon {
   width: 100%;
   height: 100%;

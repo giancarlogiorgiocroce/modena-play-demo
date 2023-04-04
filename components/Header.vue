@@ -18,8 +18,10 @@
         </a>
       </div>
       <div class="btns">
-        <Button class="btn" value="BIGLIETTI"/>
-        <Button class="btn" name="material-symbols:person"/>
+        <NuxtLink to="/tickets">
+          <Button class="btn" value="BIGLIETTI"/>
+        </NuxtLink>
+        <Button class="btn" name="material-symbols:person" @click="toggleModal()"/>
 
         <div class="hamburger" @click="toggleSideMenu()">
           <span>MENU</span>
@@ -59,6 +61,8 @@
         </div>
       </div>
     </div>
+
+    <Modal :isVisible="isModalVisible" @continue="toggleModal()"/>
   </div>
 </template>
 
@@ -70,18 +74,21 @@ const links:any = {
   four: {text:"press", href:"https://www.play-modena.it/press/" },
 }
 const lorem:string[] = ["Lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipisicing", "elit."];
+
 let isSideMenuVisible = ref(false);
 let infoShowned = ref(["PROGRAMMA"]);
+let isModalVisible = ref(false);
 
 // METHODS
+const toggleModal = () => {
+  isModalVisible.value = !isModalVisible.value
+}
 const toggleSideMenu = ():void => {
   isSideMenuVisible.value = !isSideMenuVisible.value
 }
 const toggleInfoVisibility = (id:string) => {
   if (!infoShowned.value.includes(id)) {
     infoShowned.value.push(id);
-    console.log(id);
-    
   } else {
     const index = infoShowned.value.indexOf(id);
     infoShowned.value.splice(index, 1);
@@ -190,7 +197,7 @@ const toggleInfoVisibility = (id:string) => {
     display: none;
   }
   .lines-ct.opened .line:last-child {
-    transform: rotate(-45deg) translateY(-5.5px);
+    transform: rotate(-45deg) translateY(-6px);
   }
 
   .line {
