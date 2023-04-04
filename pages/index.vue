@@ -3,6 +3,7 @@
     <Header />
     <Jumbotron />
     <CountDown />
+    <CardSection />
     <Footer />
   </div>
 </template>
