@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Livello_2" data-name="Livello 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 719.12 315.18">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: current;
+        stroke: #1d1d1b;
+        stroke-miterlimit: 10;
+        stroke-width: 4px;
+      }
+
+      .cls-2 {
+        stroke-dasharray: 0 0 12.13 12.13;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="m31.68,157.59s1.24-1.75,3.61-4.79"/>
+  <path class="cls-2" d="m42.93,143.38c23.6-27.98,81.66-87.5,148.55-87.5,73.87,0,107.01,35.08,168.08,101.71,61.07,66.63,82.17,103.32,159.56,103.32,64,0,116.01-44.69,175.9-111.57"/>
+  <path class="cls-1" d="m699.07,144.8c1.32-1.49,2.65-2.99,3.97-4.49"/>
+</svg>

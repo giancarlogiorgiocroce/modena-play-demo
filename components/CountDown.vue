@@ -1,24 +1,34 @@
 <template>
   <div class="ct center">
     <h1>mancano</h1>
+
     <div class="counter-ct">
-      <div class="clock flex-c">
-        <div class="num">{{ displayDays }}</div>
-        <div class="time">giorni</div>
-      </div>
-      <div class="clock flex-c">
-        <div class="num">{{ displayHours }}</div>
-        <div class="time">ore</div>
-      </div>
-      <div class="clock flex-c">
-        <div class="num">{{ displayMinutes }}</div>
-        <div class="time">minuti</div>
-      </div>
       <div class="clock flex-c">
         <div class="num">{{ displaySeconds }}</div>
         <div class="time">secondi</div>
         <div class="bar">
-          <div class="progress" :style="{ width: progressPercentage }"></div>
+          <div class="progress" :style="{ width: progressPercentageSec }"></div>
+        </div>
+      </div>
+      <div class="clock flex-c">
+        <div class="num">{{ displayMinutes }}</div>
+        <div class="time">minuti</div>
+        <div class="bar">
+          <div class="progress" :style="{ width: progressPercentageMin }"></div>
+        </div>
+      </div>
+      <div class="clock flex-c">
+        <div class="num">{{ displayHours }}</div>
+        <div class="time">ore</div>
+        <div class="bar">
+          <div class="progress" :style="{ width: progressPercentageHours }"></div>
+        </div>
+      </div>
+      <div class="clock flex-c">
+        <div class="num">{{ displayDays }}</div>
+        <div class="time">giorni</div>
+        <div class="bar">
+          <div class="progress" :style="{ width: progressPercentageDays }"></div>
         </div>
       </div>
     </div>
@@ -31,9 +41,20 @@ let displayHours= ref();
 let displayMinutes= ref();
 let displaySeconds= ref();
 
-const progressPercentage = computed(() => {
+const progressPercentageSec = computed(() => {
   const percentage = (displaySeconds.value * 100) / 60;
-
+  return `${percentage}%`;
+});
+const progressPercentageMin = computed(() => {
+  const percentage = (displayMinutes.value * 100) / 60;
+  return `${percentage}%`;
+});
+const progressPercentageHours = computed(() => {
+  const percentage = (displayHours.value * 100) / 24;
+  return `${percentage}%`;
+});
+const progressPercentageDays = computed(() => {
+  const percentage = (displayDays.value * 100) / 60;
   return `${percentage}%`;
 });
 
@@ -42,10 +63,6 @@ const _minutes = computed(() => _seconds.value * 60);
 const _hours = computed(() => _minutes.value * 60);
 const _days = computed(() => _hours.value * 24);
 
-const formatNum = (num:number) => {
-  // return num < 10 ? '0' + num : num;
-  return num; 
-}
 const time = () => {  
   const timer = setInterval(() => {
     const now = new Date();
@@ -57,15 +74,10 @@ const time = () => {
       return;
     }
 
-    const days = Math.floor(distance / _days.value);
-    const hours = Math.floor((distance % _days.value) / _hours.value);
-    const minutes = Math.floor((distance % _hours.value) / _minutes.value);
-    const seconds = Math.floor((distance % _minutes.value) / _seconds.value);
-
-    displayDays.value = formatNum(days);
-    displayHours.value = formatNum(hours);
-    displayMinutes.value = formatNum(minutes);
-    displaySeconds.value = formatNum(seconds);
+    displayDays.value = Math.floor(distance / _days.value);
+    displayHours.value = Math.floor((distance % _days.value) / _hours.value);
+    displayMinutes.value = Math.floor((distance % _hours.value) / _minutes.value);
+    displaySeconds.value = Math.floor((distance % _minutes.value) / _seconds.value);
 
   }, 1000)
 }
@@ -78,23 +90,24 @@ time();
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 5rem auto;
 }
 
 h1 {
-  margin: 5rem 0;
-
+  font-size: 3rem;
   text-transform: uppercase;
   color: #b0082b;
 }
 
 .counter-ct {
+  margin: 3rem 0;
   display: flex;
   gap: 3rem;
 }
 .clock {
   height: 180px;
   width: 180px;
-  padding: 7.5rem;
+  padding: 6rem;
 
   font-weight: bolder;
   color: #b0082b;
@@ -104,7 +117,7 @@ h1 {
 }
 
 .num {
-  font-size: 7rem;
+  font-size: 5rem;
 }
 
 .time {
@@ -113,12 +126,41 @@ h1 {
 }
 
 .bar {
-  min-width: 200px;
+  margin: 1rem 0.5rem;
+  min-width: 15vw;
   background: #b0082b;
+  transform: rotate(180deg);
+  border: 2px dashed white;
 }
 
 .progress {
   min-height: 10px;
+  max-width: 90vw;
   background: rgba(240, 240, 240);
+}
+
+@media only screen and (max-width:980px) {
+
+  h1 {
+    font-size: 1.7rem;
+  }
+
+  .counter-ct {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .clock {
+    height: 120px;
+    width: 120px;
+    padding: 5rem;
+  }
+
+  .num {
+    font-size: 3.5rem;
+  }
+
+  .time {
+    font-size: 16px;
+  }
 }
 </style>

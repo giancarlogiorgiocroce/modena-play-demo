@@ -1,5 +1,5 @@
 <template>
-  <div class="btn" :class="{'inverted-color-scheme': invertedColorscheme}">
+  <div class="btn flex-c" :class="{'inverted-color-scheme': invertedColorscheme}">
     <Icon v-if="name" class="icon" :name="name"/>
     <p>{{ value }}</p>
   </div>
@@ -29,7 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
   color: white;
   background-color: #b0082b;
 
-  height: fit-content;
+  height: 52px;
   width: fit-content;
   padding: 10px 20px;
   border-radius: 20px;
