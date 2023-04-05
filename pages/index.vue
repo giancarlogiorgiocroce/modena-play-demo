@@ -5,6 +5,7 @@
     <CountDown />
     <CardSection />
     <Footer />
+    <SubFooter />
   </div>
 </template>
 
@@ -14,6 +15,10 @@
   text-decoration: none;
   font-family: sans-serif;
   font-size: 16px;
+}
+
+body {
+  margin: 0;
 }
 
 p {
@@ -34,7 +39,7 @@ ul {
   background-color: #b0082b;
 }
 
-.flex-c{
+.flex-c {
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -1,5 +1,5 @@
 <template>
-  <div class="btn flex-c" :class="{'inverted-color-scheme': invertedColorscheme}">
+  <div class="btn flex-c" :class="{'inverted-color-scheme': invertedColorscheme, 'fill-space': fillSpace}">
     <Icon v-if="name" class="icon" :name="name"/>
     <p>{{ value }}</p>
   </div>
@@ -11,11 +11,13 @@ interface Props {
   value?: string,
   name?: string,
   invertedColorscheme?: boolean,
+  fillSpace?: boolean,
 }
 const props = withDefaults(defineProps<Props>(), {
   value: '',
   name: '',
   invertedColorscheme: false,
+  fillSpace: false,
 })
 </script>
 
@@ -38,7 +40,12 @@ const props = withDefaults(defineProps<Props>(), {
   transition: all 0.3s ease-out;
 }
 
-.btn.inverted-color-scheme, .btn:hover {
+.btn.fill-space {
+  width: 100%;
+  height: 100%;
+}
+
+.btn:hover {
   color: #b0082b;
   background-color: #fff;
 
@@ -47,11 +54,20 @@ const props = withDefaults(defineProps<Props>(), {
   cursor: pointer;
 }
 
-.btn.inverted-color-scheme:hover {
+.btn.inverted-color-scheme {
   color: #fff;
   background-color: #b0082b;
 
-  border: 4px solid#b0082b;
+  border: 4px solid #fff;
+
+  cursor: pointer;
+}
+
+.btn.inverted-color-scheme:hover {
+  color: #b0082b;
+  background-color: #fff;
+
+  border: 4px solid#fff;
 
   cursor: pointer;
 }
